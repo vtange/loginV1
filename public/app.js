@@ -10,7 +10,18 @@ app.factory('memory', function($http){
 
 app.controller('MainCtrl', ['$scope', 'memory', function($scope, memory){
     $scope.storage = memory; // load service
-    $scope.registerMode = false;
+    $scope.registerMode = "Login";
+    $scope.toggleRegisterTxt = "New? Register Here!";
+    $scope.toggleRegister = function(){
+        if ($scope.registerMode == "Login"){
+            $scope.registerMode = "Register";
+            $scope.toggleRegisterTxt = "Back to Login";
+        }
+        else{
+            $scope.registerMode = "Login";
+            $scope.toggleRegisterTxt = "New? Register Here!";
+        }
+    };
     
 }]);//end of controller
   //end of function
