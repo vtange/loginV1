@@ -1,6 +1,6 @@
 (function() {
     //start of function
-  var app = angular.module('VoteApp', []);
+  var app = angular.module('VoteApp', ['ngResource']);
 
 app.factory('memory', function($http){
   var storage = {};
@@ -22,7 +22,14 @@ app.controller('MainCtrl', ['$scope', 'memory', function($scope, memory){
             $scope.toggleRegisterTxt = "New? Register Here!";
         }
     };
-    
+    $scope.ProcessLoginDetails = function(){
+        if ($scope.registerMode == "Login"){
+//login
+        }
+        else{
+//create user
+        }
+    };
 }]);//end of controller
   //end of function
 })();

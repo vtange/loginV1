@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style-0.css"/>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.js"></script>
     <script type="text/javascript" src="app.js"></script>
 </head>
 <body data-ng-app="VoteApp">
@@ -14,7 +15,7 @@
       
       </div>
       <div class="user-ctrl-bar">
-        <form class="login-area" data-ng-submit=""><h2>{{registerMode}}</h2><p>Username</p><input class="well" type="text" /><!--for username--><p>Password</p><input class="well" type="text"/><!--for pass--><p><button type="submit">Submit</button><button data-ng-click="toggleRegister()">{{toggleRegisterTxt}}</button></p></form>
+        <form class="login-area" data-ng-model="LoginDetails" data-ng-submit="ProcessLoginDetails()"><h2>{{registerMode}}</h2><p>Username</p><input class="well" type="text" /><!--for username--><p>Password</p><input class="well" type="text"/><!--for pass--><p><button type="submit">Submit</button><button data-ng-click="toggleRegister()">{{toggleRegisterTxt}}</button></p></form>
       </div>
   </div>
 </body>
