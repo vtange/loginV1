@@ -7,8 +7,7 @@ app.factory('UserService', function($resource){
 });//end of service
 
 app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserService){
-
-    var UserModel = $resource('/api/Users');
+    $scope.UserService = UserService; // load service
        //init
     $scope.list = [];
     $scope.LoginDetails = {};
@@ -16,7 +15,7 @@ app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserServic
     var ListUsers = function(){
         $scope.list = UserService.query();
     }
-    $scope.UserService = UserService; // load service
+    
     $scope.registerMode = "Login";
     $scope.toggleRegisterTxt = "New? Register Here!";
     $scope.toggleRegister = function(){
