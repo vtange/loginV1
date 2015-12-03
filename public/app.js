@@ -3,7 +3,7 @@
   var app = angular.module('VoteApp', ['ngResource']);
 
 app.factory('UserService', function($resource){
-    return $resource('/api/Users',{user: "@user"});
+    return $resource('/api/Users');
 });//end of service
 
 app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserService){
@@ -41,6 +41,11 @@ app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserServic
     $scope.ProcessLoginDetails = function(){
         if ($scope.registerMode == "Login"){
 //login
+            var blah = UserService.query({username:"wefa"});
+            
+            /*function(result) {        //cannot do (err, result) -> this will make result return a function, see #1
+                console.log(result);
+            });*/
         }
         else{
 //create user

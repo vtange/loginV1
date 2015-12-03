@@ -11,12 +11,13 @@
 /*-------*/
 //use Mongoose to connect to database "Users" in MongoDB
 mongoose.connect('mongodb://localhost:27017/Users');
+
 //use bodyParser for any body parsing
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-
+app.use(bodyParser.urlencoded({ extended: true }))
 // parse application/json
 app.use(bodyParser.json())
+
     //use static middleware in express to load static page directory
     app.use(express.static(path.join(__dirname, 'public')));
 
