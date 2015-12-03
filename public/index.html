@@ -12,10 +12,10 @@
   <div class="content" data-ng-controller="MainCtrl">
       <div class="polls-viewport">
         <h1>Welcome to Poll-land.</h1>
-      
+        <span class="test-list" data-ng-repeat="user in list">{{user}}</span>
       </div>
       <div class="user-ctrl-bar">
-        <form class="login-area" data-ng-model="LoginDetails" data-ng-submit="ProcessLoginDetails()"><h2>{{registerMode}}</h2><p>Username</p><input class="well" type="text" /><!--for username--><p>Password</p><input class="well" type="text"/><!--for pass--><p><button type="submit">Submit</button><button data-ng-click="toggleRegister()">{{toggleRegisterTxt}}</button></p></form>
+        <form class="login-area" data-ng-submit="ProcessLoginDetails()"><h2>{{registerMode}}</h2><p>Username</p><input data-ng-model="LoginDetails.username" class="well" type="text" /><!--for username--><p>Password</p><input data-ng-model="LoginDetails.password"  class="well" type="text"/><!--for pass--><p><button type="submit">Submit</button></p></form><button data-ng-click="toggleRegister()">{{toggleRegisterTxt}}</button>
       </div>
   </div>
 </body>
