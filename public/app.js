@@ -2,27 +2,21 @@
     //start of function
   var app = angular.module('VoteApp', ['ngResource']);
 
-app.factory('memory', function($http){
-  var storage = {};
- storage.datadata = [];
-  return storage;
+app.factory('UserService', function($resource){
+    return $resource('/api/Users',{user: "@user"});
 });//end of service
 
-app.controller('MainCtrl', ['$scope', '$resource', 'memory', function($scope, $resource, memory){
+app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserService){
 
     var UserModel = $resource('/api/Users');
        //init
     $scope.list = [];
     $scope.LoginDetails = {};
-
-    //PRELOAD LIST FROM DATABASE
+    //LOAD LIST FROM DATABASE
     var ListUsers = function(){
-        UserModel.query(function (results){
-            $scope.list = results;
-        });
+        $scope.list = UserService.query();
     }
-
-    $scope.storage = memory; // load service
+    $scope.UserService = UserService; // load service
     $scope.registerMode = "Login";
     $scope.toggleRegisterTxt = "New? Register Here!";
     $scope.toggleRegister = function(){
@@ -36,7 +30,7 @@ app.controller('MainCtrl', ['$scope', '$resource', 'memory', function($scope, $r
         }
     };
     $scope.addUser = function(){
-        var newUser = new UserModel;                 //generate resource OBJECT
+        var newUser = new UserService;                 //generate resource OBJECT
         newUser.username = $scope.LoginDetails.username;       //insert text into resource OBJECT
         newUser.password = $scope.LoginDetails.password;       //insert text into resource OBJECT
         newUser.$save(function (result) {        //cannot do (err, result) -> this will make result return a function, see #1
