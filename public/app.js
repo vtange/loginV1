@@ -16,9 +16,11 @@ app.controller('MainCtrl', ['$scope', '$resource', 'memory', function($scope, $r
     $scope.LoginDetails = {};
 
     //PRELOAD LIST FROM DATABASE
-    UserModel.query(function (results){
-        $scope.list = results;
-    });
+    var ListUsers = function(){
+        UserModel.query(function (results){
+            $scope.list = results;
+        });
+    }
 
     $scope.storage = memory; // load service
     $scope.registerMode = "Login";
@@ -39,8 +41,7 @@ app.controller('MainCtrl', ['$scope', '$resource', 'memory', function($scope, $r
         newUser.password = $scope.LoginDetails.password;       //insert text into resource OBJECT
         newUser.$save(function (result) {        //cannot do (err, result) -> this will make result return a function, see #1
             $scope.list.push(result);
-            console.log($scope.list)
-            console.log(newUser)
+            ListUsers();
         });
         $scope.LoginDetails = {};
     }
