@@ -31,10 +31,12 @@ body {
   height:50%;
   background-color: brown;
   color: aliceblue;
+  overflow-x: hidden;
 }
 
 .login-area{
   display: inline-block;
+  transition: all 0.5s ease-in-out;
 }
 .well{
  font-size: 1.5em;
@@ -50,4 +52,10 @@ body {
  margin: 0 1% 0 1%;
  border-radius: 10px;
  background-color: rgba(200,200,200,0.5);
+}
+
+.user-ctrl-panel{
+    position: absolute;
+    left:40px;
+    transition: all 0.5s ease-in-out;
 }

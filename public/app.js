@@ -11,7 +11,23 @@ app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserServic
        //init
     $scope.list = [];
     $scope.LoginDetails = {};
-    $scope.activeUser = {};
+    $scope.activeUser = null;
+    $scope.show_login = function () {
+        if ($scope.activeUser) {
+            return { "transform": "translateX(300%)" };
+        }
+        else{
+        return { "transform": "translateX(0%)" };
+        }
+    };
+    $scope.show_user = function () {
+        if ($scope.activeUser) {
+            return { "transform": "translateX(0%)" };
+        }
+        else{
+        return { "transform": "translateX(-200%)" };
+        }
+    };
     //LOAD LIST FROM DATABASE
     var ListUsers = function(){
         $scope.list = UserService.query();
@@ -73,6 +89,9 @@ app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserServic
 //create user
             $scope.addUser();
         }
+    };
+    $scope.userLogout = function(){
+        $scope.activeUser = null;
     };
 }]);//end of controller
   //end of function
