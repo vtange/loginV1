@@ -4,8 +4,9 @@ var UserModel = require('../models/user');
 //give Mongoose object (mongoose.model"User") abilities
 module.exports.list = function (req,res){
     UserModel.find(req.query, function (err,results) {
-        console.log(req.query);
-        console.log(results);
+        //req.query for query()
+        //req.params for :blahs
+        //no such thing as req.body for GET requests
         res.json(results);
     });
 };

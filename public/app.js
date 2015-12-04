@@ -41,7 +41,7 @@ app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserServic
     $scope.ProcessLoginDetails = function(){
         if ($scope.registerMode == "Login"){
 //login
-            var blah = UserService.query({username:"wefa"});
+            var foundUser = UserService.query({username:$scope.LoginDetails.username,password:$scope.LoginDetails.password});
             
             /*function(result) {        //cannot do (err, result) -> this will make result return a function, see #1
                 console.log(result);
