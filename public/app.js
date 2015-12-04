@@ -11,6 +11,7 @@ app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserServic
        //init
     $scope.list = [];
     $scope.LoginDetails = {};
+    $scope.activeUser = {};
     //LOAD LIST FROM DATABASE
     var ListUsers = function(){
         $scope.list = UserService.query();
@@ -30,20 +31,42 @@ app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserServic
         }
     };
     $scope.addUser = function(){
-        var newUser = new UserService;                 //generate resource OBJECT
-        newUser.username = $scope.LoginDetails.username;       //insert text into resource OBJECT
-        newUser.password = $scope.LoginDetails.password;       //insert text into resource OBJECT
-        newUser.$save(function (result) {        //cannot do (err, result) -> this will make result return a function, see #1
-            $scope.list.push(result);
-            ListUsers();
+        if($scope.LoginDetails.username.length > 5 && $scope.LoginDetails.password.length > 5)
+        UserService.query({username:$scope.LoginDetails.username},function(response){
+            if(response[0]){
+                console.log("Sorry name is taken")
+            }
+            else{
+                var newUser = new UserService;                 //generate resource OBJECT
+                newUser.username = $scope.LoginDetails.username;       //insert text into resource OBJECT
+                newUser.password = $scope.LoginDetails.password;       //insert text into resource OBJECT
+                newUser.$save(function (result) {        //cannot do (err, result) -> this will make result return a function, see #1
+                    $scope.list.push(result);
+                    ListUsers();
+                });
+                $scope.LoginDetails = {};
+            }
         });
-        $scope.LoginDetails = {};
     }
     $scope.ProcessLoginDetails = function(){
         if ($scope.registerMode == "Login"){
-//login
+//login            
+            var loginUser = function(response_arr){
+                if(response_arr[0]){
+                    $scope.activeUser=response_arr[0];
+                    console.log("Logged in as " + $scope.activeUser.username);
+                    $scope.LoginDetails = {};
+                    //apply cookie login later with a post chained after this check
+                }
+                else{
+                    //send try again message
+                    console.log("Oops not in records, Try again.")
+                }
+            }
             UserService.query({username:$scope.LoginDetails.username,password:$scope.LoginDetails.password},function(response){
-                console.log(response)
+                console.log(response[0])
+                loginUser(response)
+                //do function check if response contain object. active user becomes object.
             });
         }
         else{

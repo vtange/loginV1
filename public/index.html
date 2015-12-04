@@ -15,7 +15,7 @@
         <span class="test-list" data-ng-repeat="user in list">{{user}}</span>
       </div>
       <div class="user-ctrl-bar">
-        <form class="login-area" data-ng-submit="ProcessLoginDetails()"><h2>{{registerMode}}</h2><p>Username</p><input data-ng-model="LoginDetails.username" class="well" type="text" /><!--for username--><p>Password</p><input data-ng-model="LoginDetails.password"  class="well" type="text"/><!--for pass--><p><button type="submit">Submit</button></p></form><button data-ng-click="toggleRegister()">{{toggleRegisterTxt}}</button>
+        <form class="login-area" data-ng-submit="ProcessLoginDetails()"><h2>{{registerMode}}</h2><p>Username</p><input data-ng-model="LoginDetails.username" class="well" type="text" /><!--for username--><p>Password</p><input data-ng-model="LoginDetails.password"  class="well" type="text"/><!--for pass--><p><button type="submit">Submit</button><button type="button" data-ng-click="toggleRegister()">{{toggleRegisterTxt}}</button></p></form>
       </div>
   </div>
 </body>
