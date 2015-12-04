@@ -13,10 +13,10 @@
 mongoose.connect('mongodb://localhost:27017/Users');
 
 //use bodyParser for any body parsing
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }))
 // parse application/json
 app.use(bodyParser.json())
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
 
     //use static middleware in express to load static page directory
     app.use(express.static(path.join(__dirname, 'public')));

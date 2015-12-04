@@ -14,6 +14,7 @@ app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserServic
     //LOAD LIST FROM DATABASE
     var ListUsers = function(){
         $scope.list = UserService.query();
+        console.log($scope.list);
     }
     
     $scope.registerMode = "Login";
@@ -41,11 +42,9 @@ app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserServic
     $scope.ProcessLoginDetails = function(){
         if ($scope.registerMode == "Login"){
 //login
-            var foundUser = UserService.query({username:$scope.LoginDetails.username,password:$scope.LoginDetails.password});
-            
-            /*function(result) {        //cannot do (err, result) -> this will make result return a function, see #1
-                console.log(result);
-            });*/
+            UserService.query({username:$scope.LoginDetails.username,password:$scope.LoginDetails.password},function(response){
+                console.log(response)
+            });
         }
         else{
 //create user
