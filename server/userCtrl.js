@@ -1,5 +1,5 @@
 //get Mongoose object
-var UserModel = require('../models/user');
+var UserModel = require('../server/models/user');
 
 //give Mongoose object (mongoose.model"User") abilities
 module.exports.list = function (req,res){

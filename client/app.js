@@ -63,7 +63,7 @@ app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserServic
                 $scope.LoginDetails = {};
             }
         });
-    }
+    };
     $scope.ProcessLoginDetails = function(){
         if ($scope.registerMode == "Login"){
 //login            

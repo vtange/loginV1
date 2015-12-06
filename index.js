@@ -2,7 +2,7 @@
     var path = require('path');
     var bodyParser  = require('body-parser');
     var mongoose = require('mongoose');
-    var Users = require('./backend/userCtrl.js');
+    var Users = require('./server/userCtrl.js');
     
     var app = express();
 
@@ -19,7 +19,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
     //use static middleware in express to load static page directory
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, 'client')));
 
 app.listen(3000,function(){
     console.log('I\'m Listening...');
