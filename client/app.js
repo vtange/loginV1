@@ -47,22 +47,27 @@ app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserServic
         }
     };
     $scope.addUser = function(){
-        if($scope.LoginDetails.username.length > 5 && $scope.LoginDetails.password.length > 5)
-        UserService.query({username:$scope.LoginDetails.username},function(response){
-            if(response[0]){
-                console.log("Sorry name is taken")
-            }
-            else{
-                var newUser = new UserService;                 //generate resource OBJECT
-                newUser.username = $scope.LoginDetails.username;       //insert text into resource OBJECT
-                newUser.password = $scope.LoginDetails.password;       //insert text into resource OBJECT
-                newUser.$save(function (result) {        //cannot do (err, result) -> this will make result return a function, see #1
-                    $scope.list.push(result);
-                    ListUsers();
-                });
-                $scope.LoginDetails = {};
-            }
-        });
+        if($scope.LoginDetails.username.length > 5 && $scope.LoginDetails.password.length > 5){
+			UserService.query({username:$scope.LoginDetails.username},function(response){
+				if(response[0]){
+					console.log("Sorry name is taken")
+				}
+				else{
+					var newUser = new UserService;                 //generate resource OBJECT
+					newUser.username = $scope.LoginDetails.username;       //insert text into resource OBJECT
+					newUser.password = $scope.LoginDetails.password;       //insert text into resource OBJECT
+					newUser.$save(function (result) {        //cannot do (err, result) -> this will make result return a function, see #1
+						$scope.list.push(result);
+						ListUsers();
+					});
+					$scope.LoginDetails = {};
+				}
+			});
+		}
+		else {
+			//send not enough chars message
+			console.log("Username/Pass both need 5+ chars.")
+		}
     };
     $scope.ProcessLoginDetails = function(){
         if ($scope.registerMode == "Login"){
