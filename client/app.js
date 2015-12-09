@@ -3,7 +3,7 @@
   var app = angular.module('VoteApp', ['ngResource']);
 
 app.factory('UserService', function($resource){
-    return $resource('/api/Users');
+    return $resource('/Users');//CAN BE ANY URL -> GET POST PUT changes to Users HERE
 });//end of service
 
 app.controller('MainCtrl', ['$scope', 'UserService', function($scope, UserService){
