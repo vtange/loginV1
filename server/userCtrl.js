@@ -1,6 +1,6 @@
 //get Mongoose object
 var UserModel = require('../server/models/user');
-
+console.log("access userCtrl.js")
 //give Mongoose object (mongoose.model"User") abilities
 module.exports.list = function (req,res){
     UserModel.find(req.query, function (err,results) {
