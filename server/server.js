@@ -36,6 +36,6 @@ app.post('/Users', Users.create);//from $resource service
 /*-START SERVER-*/
 /*-------*/
 console.log("begin listen")
-app.listen(process.env.PORT, process.env.IP,function(){
+app.listen(process.env.PORT||3000, process.env.IP,function(){
     console.log('I\'m Listening...');
 });
