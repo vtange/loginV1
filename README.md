@@ -1,5 +1,5 @@
 # loginV1
-very basic, very insecure login system
+very basic, very insecure login system, uses NgResource
 ```
 
 CLIENTSIDE (similar to a MongoDB route)
