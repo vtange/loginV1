@@ -29,11 +29,13 @@ app.factory('UserService', function($resource){
 
 SERVERSIDE
 
+== server.js ==
+
 var Users = require('./userCtrl.js');
 app.get('/Users', Users.list);//from $resource service
 app.post('/Users', Users.create);//from $resource service
-...
-userCtrl.js
+
+== userCtrl.js ==
 var UserModel = require('../server/models/user');
 
 module.exports.list = function (req,res){
